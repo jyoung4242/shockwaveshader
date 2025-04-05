@@ -30,7 +30,7 @@ class backGroundSTaticActor extends Actor {
   }
 
   onInitialize(engine: Engine): void {
-    this.graphics.use(Resources.checkerboard.toSprite());
+    this.graphics.use(Resources.demo.toSprite()); // other is checkerboard
     engine.currentScene.camera.strategy.lockToActor(this);
   }
 }
