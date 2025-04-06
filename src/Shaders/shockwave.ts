@@ -157,13 +157,17 @@ export class ShockWavePostProcessor implements PostProcessor {
     let numShockwaves = this._shockwaves.length;
 
     if (myShader) {
-      myShader.setUniformInt("u_numShockwaves", numShockwaves);
-      myShader.setUniformFloatVector("u_aspectRatio", aRatio);
-      myShader.setUniformFloatArray("u_t", tArray);
-      myShader.setUniformFloatArray("u_maxRadius", maxRadiusArray);
-      myShader.setUniformFloatArray("u_centerX", locationArrayX);
-      myShader.setUniformFloatArray("u_centerY", locationArrayY);
-      myShader.setUniformFloatArray("u_thickness", thicknessArray);
+      if (tArray.length === 0) {
+        return;
+      }
+
+      myShader.trySetUniformInt("u_numShockwaves", numShockwaves);
+      myShader.trySetUniformFloatVector("u_aspectRatio", aRatio);
+      myShader.trySetUniformFloatArray("u_t", tArray);
+      myShader.trySetUniformFloatArray("u_maxRadius", maxRadiusArray);
+      myShader.trySetUniformFloatArray("u_centerX", locationArrayX);
+      myShader.trySetUniformFloatArray("u_centerY", locationArrayY);
+      myShader.trySetUniformFloatArray("u_thickness", thicknessArray);
     }
   }
 }
